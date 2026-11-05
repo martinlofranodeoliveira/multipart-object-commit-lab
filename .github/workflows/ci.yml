@@ -1,0 +1,25 @@
+name: local-contract
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Build and qualify linked SQLite
+        timeout-minutes: 15
+        run: docker build -t multipart-object-commit-lab:ci .
+      - name: Test without network services outside loopback
+        timeout-minutes: 3
+        run: docker run --rm --network none --read-only --tmpfs /tmp:rw,nosuid,nodev,size=192m multipart-object-commit-lab:ci php tests/run.php
+      - name: Asserting offline demo
+        timeout-minutes: 3
+        run: docker run --rm --network none --read-only --tmpfs /tmp:rw,nosuid,nodev,size=192m multipart-object-commit-lab:ci php bin/demo.php --json

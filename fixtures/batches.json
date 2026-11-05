@@ -1,0 +1,6 @@
+{
+  "description": "Synthetic byte strings only; no personal or client data.",
+  "abc_sha256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "xyz_sha256": "3608bca1e44ea6c4d268eb6db02260269892c0b42b86bbf1e77a6fa16c3c9282",
+  "traversal_label": "../run/escaped.php — rótulo"
+}

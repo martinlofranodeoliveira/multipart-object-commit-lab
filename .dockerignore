@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+.build
+build
+vendor
+coverage
+*.log
+*.sqlite*
+*.sock
+*.pid

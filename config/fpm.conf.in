@@ -1,0 +1,40 @@
+[global]
+pid = @ROOT@/run/fpm.pid
+error_log = @ROOT@/logs/fpm.log
+log_level = warning
+log_limit = 1024
+daemonize = no
+process_control_timeout = 1s
+
+[commit-lab]
+listen = @ROOT@/run/fpm.sock
+listen.mode = 0600
+listen.backlog = 4
+pm = static
+pm.max_children = 4
+pm.max_requests = 64
+clear_env = yes
+env[LAB_ROOT] = @ROOT@
+env[LAB_GATES] = 1
+chdir = @PUBLIC@
+catch_workers_output = no
+request_terminate_timeout = 6s
+request_terminate_timeout_track_finished = yes
+rlimit_files = 128
+security.limit_extensions = .php
+php_admin_flag[display_errors] = off
+php_admin_flag[log_errors] = on
+php_admin_value[error_log] = @ROOT@/logs/php.log
+php_admin_value[error_reporting] = 32767
+php_admin_value[expose_php] = 0
+php_admin_value[memory_limit] = 32M
+php_admin_value[max_execution_time] = 5
+php_admin_value[max_input_time] = 5
+php_admin_value[post_max_size] = 9M
+php_admin_value[upload_max_filesize] = 2M
+php_admin_value[max_file_uploads] = 4
+php_admin_value[max_input_vars] = 1
+php_admin_value[max_multipart_body_parts] = 5
+php_admin_value[upload_tmp_dir] = @ROOT@/parser
+php_admin_value[sys_temp_dir] = @ROOT@/parser
+php_admin_flag[enable_post_data_reading] = off

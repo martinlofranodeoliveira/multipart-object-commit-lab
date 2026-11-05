@@ -1,0 +1,10 @@
+*.log
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sock
+*.pid
+/vendor/
+/coverage/
+/.idea/
+/.vscode/
